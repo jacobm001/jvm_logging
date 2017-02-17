@@ -22,7 +22,7 @@ def clean_str(val):
 
 def build_query(parsed_data):
 	if len(sys.argv) < 2:
-		print("Need an")
+		print("Need a hostname parameter")
 		sys.exit(4)
 
 	hostname = sys.argv[1]
