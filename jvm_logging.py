@@ -1,4 +1,6 @@
-import pymssql, re, socket, sys, time
+#!/usr/bin/python3.5
+
+import pymssql, re, sys, time
 
 def parse(raw_data):
 	results = re.findall("([A-Za-z]+) = ([0-9\.]+);", raw_data)
@@ -19,7 +21,12 @@ def clean_str(val):
 	return val
 
 def build_query(parsed_data):
-	hostname = socket.gethostname()
+	if len(sys.argv) < 2:
+		print("Need an")
+		sys.exit(4)
+
+	hostname = sys.argv[1]
+
 	query = "insert into [jaspersoft].[jvm_logging] (servername, timestamp, category, value) values "
 
 	for cat, val in parsed_data:
